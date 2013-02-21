@@ -48,10 +48,10 @@ int main(int argc,char **argv) {
 								      */
 
            //launch kernel.
-	   square<<<1,ARRAY_SIZE>>>(d_out,d_int); /* <<< >>> is the CUDA launch operator.
+	   square<<<1,ARRAY_SIZE>>>(d_out,d_int); // <<< >>> is the CUDA launch operator.
 	   
 	   //Copy results back to CPU. Transer direction: GPU -> CPU
-	   cudaMemcpy(h_out,d_out,ARRAY_BYTES,cudaMemcpuDeviceToHost);
+	   cudaMemcpy(h_out,d_out,ARRAY_BYTES,cudaMemcpyDeviceToHost);
 
 	   //print resulting array
 	   for(int i=0;i<ARRAY_SIZE;i++) {
@@ -62,3 +62,4 @@ int main(int argc,char **argv) {
 	   //Free GPU memory allocation.
 	   cudaFree(d_in); cudaFree(d_out);	   
 	   return 0;
+}
